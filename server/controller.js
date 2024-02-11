@@ -37,7 +37,9 @@ module.exports = {
 
     getCities: (req, res)=>{
         const query = `
-            SELECT * FROM cities;
+            SELECT city_id, name as city,rating FROM cities
+            JOIN countries_id as country
+            ON country_id = country;
         `
         sequelize.query(query)
         .then(dbRes =>{
